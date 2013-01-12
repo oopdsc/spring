@@ -1,0 +1,8 @@
+/*
+	Copyright (c) 2004-2009, The Dojo Foundation All Rights Reserved.
+	Available via Academic Free License >= 2.1 OR the modified BSD license.
+	see: http://dojotoolkit.org/license for details
+*/
+
+
+if(!dojo._hasResource["dojox.gfx.Moveable"]){dojo._hasResource["dojox.gfx.Moveable"]=true;dojo.provide("dojox.gfx.Moveable");dojo.require("dojox.gfx.Mover");dojo.declare("dojox.gfx.Moveable",null,{constructor:function $DAH9_(_1,_2){this.shape=_1;this.delay=(_2&&_2.delay>0)?_2.delay:0;this.mover=(_2&&_2.mover)?_2.mover:dojox.gfx.Mover;this.events=[this.shape.connect("onmousedown",this,"onMouseDown")];},destroy:function $DAIA_(){dojo.forEach(this.events,this.shape.disconnect,this.shape);this.events=this.shape=null;},onMouseDown:function $DAIB_(e){if(this.delay){this.events.push(this.shape.connect("onmousemove",this,"onMouseMove"));this.events.push(this.shape.connect("onmouseup",this,"onMouseUp"));this._lastX=e.clientX;this._lastY=e.clientY;}else{new this.mover(this.shape,e,this);}dojo.stopEvent(e);},onMouseMove:function $DAIC_(e){if(Math.abs(e.clientX-this._lastX)>this.delay||Math.abs(e.clientY-this._lastY)>this.delay){this.onMouseUp(e);new this.mover(this.shape,e,this);}dojo.stopEvent(e);},onMouseUp:function $DAID_(e){this.shape.disconnect(this.events.pop());this.shape.disconnect(this.events.pop());},onMoveStart:function $DAIE_(_3){dojo.publish("/gfx/move/start",[_3]);dojo.addClass(dojo.body(),"dojoMove");},onMoveStop:function $DAIF_(_4){dojo.publish("/gfx/move/stop",[_4]);dojo.removeClass(dojo.body(),"dojoMove");},onFirstMove:function $DAIG_(_5){},onMove:function $DAIH_(_6,_7){this.onMoving(_6,_7);this.shape.applyLeftTransform(_7);this.onMoved(_6,_7);},onMoving:function $DAII_(_8,_9){},onMoved:function $DAIJ_(_a,_b){}});}

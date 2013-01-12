@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+    
+    <aop:aspectj-autoproxy />
+    <!-- auto scan specified class under package -->
+    <context:component-scan base-package="com.nono.spring" />
+    
+    <bean id="domainBean" class="com.nono.spring.chapter4.SubDomainBean" />
+    <!-- import other config files -->
+    <!-- 
+    <import resource="classpath:com.nono.spring.bean.beans2.xml />
+     -->
+    
+    <context:annotation-config /> 
+    <!-- This is config bean using default construct method and set value
+    <bean name="userBean" class="com.nono.spring.bean.UserBean" p:name="config in new xml">
+    	<property name="age">
+    		<value>22</value>
+    	</property>
+    </bean>    
+     -->
+     
+     <bean id="userBean" class="com.nono.spring.chapter4.UserBean"
+     p:name="userBeanInXml" p:age="20" scope="singleton"/>
+     
+     <!-- Using static factory method to generate UserBean 
+     <bean name="userBean"	 class="com.nono.spring.bean.UserFactory" factory-method="getUserBean" 
+     p:name="static factory" p:age="22" />
+    -->
+    
+    <!-- set value with tag <property> -->
+    <bean id="userManager" class="com.nono.spring.chapter4.UserManager">
+    	<property name="managerName">
+    		<value>Manger config in XML</value>
+    	</property>
+    	
+    	<!-- 
+    	Easy mode
+    	<property name="managerName" value="Manager config in XML" />
+    	
+    	P mode
+    	<bean name="userManager" class="com.nono.spring.bean.UserManager"
+    		p:managerName="Manager config in XML" />
+    	 -->
+    	
+    	<!-- set property with a reference bean -->
+    	<property name="user" ref="userBean">
+    	</property>
+    	
+    	<!-- a better way is to use idref tag.
+    	In this way, the spring will check the reference is valid before launch.
+    	<property name="user">
+    		<idref bean="userBean" />
+    	</property>
+    	 -->
+    	
+    	<!-- 
+    	default mode
+    	<property name="user">
+    		<ref bean="userBean" />
+    	</property>
+    	
+    	P mode
+    	<bean name="userManager" class="com.nono.spring.chapter4.UserManager"
+    		user_ref="userBean" />
+    	 -->
+    	
+    	<!-- set userBean.name property -->
+    	<property name="user.name" value="cacsssss" />    	
+    	
+    	<!-- another way is using inner bean -->
+    	<property name="innerBean">
+    		<bean class="com.nono.spring.chapter4.InnerBean" p:name="inner bean"/>
+    	</property>
+    	
+    	<!-- set property value as list -->
+    	<property name="sports">
+    		<list>
+    			<value>Reading</value>
+    			<value>Music</value>
+    			<value>Painting</value>
+    		</list>
+
+    		<!-- 
+    		<set>
+    			<value>SetValue1</value>
+    			<value>SetValue2</value>
+    		</set>
+    		
+    		<map>
+    			<entry>
+    				<key><value>MapKey1</value></key>
+    				<value>MapValue1</value>
+    			</entry>
+    			<entry>
+    				<key><value>MapKey2</value></key>
+    				<value>MapValue2<entry>
+    			</entry>
+    			
+    			<entry>
+    				<key><value>MapKey3</value></key>
+    				<ref bean="valueBean"/>
+    			</entry>
+    		</map>
+    		
+    		easy mode
+    		<map>
+    			<entry key="Mapkey1" value="Mapvalue1" />
+    		</map>
+    		
+    		<props>
+    			<prop key="PropertiesKey1">PropertiesValue1</prop>
+    			<prop key="PropertiesKey2">PropertiesValue2</prop>
+    		</props>
+    		 -->
+    	</property>
+    	
+    </bean>
+    <bean id="springBean" class="com.nono.spring.SpringBean"></bean>
+    
+    	<!-- if config with depends-on property, the depend-on bean will
+    	be created before this bean -->
+    <bean id="dependeeBean"	 class="com.nono.spring.chapter4.DependeeBean" 
+    	depends-on="dependBean"/>
+    	
+    <bean id="factoryUserBean" class="com.nono.spring.chapter4.UserBeanFactory" />
+    	
+   	<bean id="dependBean" class="com.nono.spring.chapter4.DependBean" />
+   	<bean class="com.nono.spring.chapter4.AOPLog"></bean>
+</beans>

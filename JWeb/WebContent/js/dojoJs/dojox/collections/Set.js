@@ -1,0 +1,8 @@
+/*
+	Copyright (c) 2004-2009, The Dojo Foundation All Rights Reserved.
+	Available via Academic Free License >= 2.1 OR the modified BSD license.
+	see: http://dojotoolkit.org/license for details
+*/
+
+
+if(!dojo._hasResource["dojox.collections.Set"]){dojo._hasResource["dojox.collections.Set"]=true;dojo.provide("dojox.collections.Set");dojo.require("dojox.collections.ArrayList");(function(){var _1=dojox.collections;_1.Set=new (function(){function conv(_2){if(_2.constructor==Array){return new dojox.collections.ArrayList(_2);}return _2;};this.union=function $Dfm_(_3,_4){_3=conv(_3);_4=conv(_4);var _5=new dojox.collections.ArrayList(_3.toArray());var e=_4.getIterator();while(!e.atEnd()){var _6=e.get();if(!_5.contains(_6)){_5.add(_6);}}return _5;};this.intersection=function $Dfn_(_7,_8){_7=conv(_7);_8=conv(_8);var _9=new dojox.collections.ArrayList();var e=_8.getIterator();while(!e.atEnd()){var _a=e.get();if(_7.contains(_a)){_9.add(_a);}}return _9;};this.difference=function $Dfo_(_b,_c){_b=conv(_b);_c=conv(_c);var _d=new dojox.collections.ArrayList();var e=_b.getIterator();while(!e.atEnd()){var _e=e.get();if(!_c.contains(_e)){_d.add(_e);}}return _d;};this.isSubSet=function $Dfp_(_f,_10){_f=conv(_f);_10=conv(_10);var e=_f.getIterator();while(!e.atEnd()){if(!_10.contains(e.get())){return false;}}return true;};this.isSuperSet=function $Dfq_(_11,_12){_11=conv(_11);_12=conv(_12);var e=_12.getIterator();while(!e.atEnd()){if(!_11.contains(e.get())){return false;}}return true;};})();})();}
