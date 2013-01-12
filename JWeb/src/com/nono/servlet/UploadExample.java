@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "FileUploadServlet", urlPatterns = {"/upload"})
 @MultipartConfig
 public class UploadExample extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 11L;
        
     /**
      * @see HttpServlet#HttpServlet()
