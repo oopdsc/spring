@@ -5,6 +5,7 @@ package com.nono.bean;
 
 /**
  * @author nono
+ * @date
  *
  */
 public class UserBean {
