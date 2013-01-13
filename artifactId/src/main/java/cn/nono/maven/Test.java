@@ -10,7 +10,7 @@ public class Test implements Serializable{
 	//aaaaa
 	private HashSet<TtttParameter> a;
 	public static int s = 0;
-	public final int o = 0;
+	public int o = 0;
 	/**
 	 * @deprecated Use {@link #tttt(TtttParameter)} instead
 	 */
