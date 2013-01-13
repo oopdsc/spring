@@ -1,6 +1,11 @@
 package cn.nono.maven;
 
+/**
+ * 
+ *2013-1-13 - 下午1:54:59
+ */
 public class TtttParameter {
+	
 	public int age;
 	public String name;
 
