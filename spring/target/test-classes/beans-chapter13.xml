@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<bean name="jobDetail" class="org.springframework.scheduling.quartz.JobDetailBean"
+		p:jobClass="com.nono.spring.chapter13.SpringJob"
+		p:applicationContextJobDataKey="applicationContext">
+		<!-- property name="jobDataAsMap">
+			<map>
+				<entry key="size" value="10" />
+			</map>
+		</property -->
+	</bean>
+	
+	<bean name="simpleTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerBean"
+		p:jobDetail-ref="jobDetail"
+		p:startDelay="1000"
+		p:repeatInterval="2000"
+		p:repeatCount="20">
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="count" value="10" />
+			</map>
+		</property>
+	</bean>
+	
+	<bean id="scheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref bean="simpleTrigger"></ref>
+			</list>
+		</property>
+		<property name="schedulerContextAsMap">
+			<map>
+				<entry key="timeout" value="30" />
+			</map>
+		</property>
+		
+		<!-- 
+		<property name="configLocation" 
+		value="classpath:com/nono/spring/chapter13/quartz.properties" />
+		
+		<property name="quartzProperties">
+			<props>
+				<prop key="org.quartz."
+			</props>
+		</property>
+		
+		 -->
+		 
+	</bean>
+	
+	
+	</beans>

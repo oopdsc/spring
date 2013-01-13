@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-2.5.xsd
+    http://www.springframework.org/schema/tx 
+    http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+	<bean id="simpleForumServiceImpl" class="com.nono.spring.chapter6.SimpleForumServiceImpl" />
+	
+	<bean id="cglibForumServiceImpl" class="com.nono.spring.chapter6.CglibForumServiceImpl" />
+
+	<bean id="greetingBeforeAdvice" class="com.nono.spring.chapter6.GreetingBeforeAdvice" />
+	<bean id="greetingAfterAdvice" class="com.nono.spring.chapter6.GreetingAfterAdvice" />
+	<bean id="greetingInterceptor" class="com.nono.spring.chapter6.GreetingInterceptor" />
+	<bean id="forumServiceBeforeAdviceImpl" class="org.springframework.aop.framework.ProxyFactoryBean"
+		p:proxyInterfaces="com.nono.spring.chapter6.ForumService"
+		p:target-ref="simpleForumServiceImpl" >
+		<property name="interceptorNames">
+			<list>
+				<!-- the invoke order is as like in the config file -->
+				<idref local="greetingInterceptor"	/>
+				<idref local="greetingBeforeAdvice" />
+				<idref local="greetingAfterAdvice" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="regexpAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor"
+		p:patterns=".*Topic.*"
+		p:advice-ref="greetingAfterAdvice" />
+		
+	<bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
+		p:usePrefix = "true" p:advisorBeanNamePrefix="regexp" />
+
+	<bean id="performanceHandler" class="com.nono.spring.chapter6.PerformanceHandler" 
+		p:target-ref="simpleForumServiceImpl"/>
+		
+		
+	<bean id="controlFlowPointcut" class="org.springframework.aop.support.ControlFlowPointcut">
+		<constructor-arg type="java.lang.Class" value="com.nono.spring.chapter6.ForumServiceDelegate"></constructor-arg>
+		<constructor-arg type="java.lang.String" value="removeAll"></constructor-arg>
+	</bean>
+		
+	<bean id="controlFlowAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor"
+		p:pointcut-ref="controlFlowPointcut" p:advice-ref="greetingBeforeAdvice"	/>
+ 	<!-- 		could not use two advisor on one bean, to fullfil this requirement, try to use ComposablePointcut
+	<bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator"
+		p:beanNames="simpleForumServiceImpl"
+		p:interceptorNames="controlFlowAdvisor"
+		p:optimize="true" />	
+	-->
+	<bean id="forumServiceDelegate" class="com.nono.spring.chapter6.ForumServiceDelegate" />
+
+</beans>

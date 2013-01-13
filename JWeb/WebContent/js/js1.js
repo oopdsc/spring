@@ -1,0 +1,3 @@
+function si(){
+	alert('si');
+}

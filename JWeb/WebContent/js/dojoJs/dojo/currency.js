@@ -1,0 +1,8 @@
+/*
+	Copyright (c) 2004-2009, The Dojo Foundation All Rights Reserved.
+	Available via Academic Free License >= 2.1 OR the modified BSD license.
+	see: http://dojotoolkit.org/license for details
+*/
+
+
+if(!dojo._hasResource["dojo.currency"]){dojo._hasResource["dojo.currency"]=true;dojo.provide("dojo.currency");dojo.require("dojo.number");dojo.require("dojo.i18n");dojo.requireLocalization("dojo.cldr","currency",null,"ROOT,af,ar,az,be,bg,bn,bo,ca,cs,cy,da,de,el,el-polyton,en,en-au,en-bz,en-ca,en-hk,en-jm,en-mt,en-na,en-nz,en-sg,en-tt,en-us,es,es-ec,es-pr,es-us,et,eu,fa,fa-af,fi,fil,fr,fr-ca,ga,gl,gsw,he,hi,hr,hu,is,it,iw,ja,ka,ko,lt,lv,mk,ml,mo,mt,nb,ne,nl,nn,no,pa-arab,pa-pk,pl,pt,ro,ru,sh,sk,sl,sq,sr,sr-latn,sv,te,th,tl,tr,uk,ur,vi,zh,zh-hans-hk,zh-hant,zh-hant-hk,zh-hk,zh-mo,zh-tw");dojo.require("dojo.cldr.monetary");dojo.currency._mixInDefaults=function $DBB6_(_1){_1=_1||{};_1.type="currency";var _2=dojo.i18n.getLocalization("dojo.cldr","currency",_1.locale)||{};var _3=_1.currency;var _4=dojo.cldr.monetary.getData(_3);dojo.forEach(["displayName","symbol","group","decimal"],function(_5){_4[_5]=_2[_3+"_"+_5];});_4.fractional=[true,false];return dojo.mixin(_4,_1);};dojo.currency.format=function $DBB7_(_6,_7){return dojo.number.format(_6,dojo.currency._mixInDefaults(_7));};dojo.currency.regexp=function $DBB8_(_8){return dojo.number.regexp(dojo.currency._mixInDefaults(_8));};dojo.currency.parse=function $DBB9_(_9,_a){return dojo.number.parse(_9,dojo.currency._mixInDefaults(_a));};}
