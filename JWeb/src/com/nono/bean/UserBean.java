@@ -5,7 +5,7 @@ package com.nono.bean;
 
 /**
  * @author nono
- * @date
+ * @date win777
  *
  */
 public class UserBean {
