@@ -772,6 +772,36 @@ information in the standard deployment descriptor.
 Tools are not allowed to add the non-standard information into the
 standard deployment descriptor.
 -->
-<web-app xmlns:javaee="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+<web-app xmlns:javaee="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
   <javaee:display-name>Archetype Created Web Application</javaee:display-name>
+  <servlet>
+    <javaee:description></javaee:description>
+    <javaee:display-name>CreatePpcr</javaee:display-name>
+    <servlet-name>CreatePpcr</servlet-name>
+    <servlet-class>com.nono.servlet.CreatePpcr</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CreatePpcr</servlet-name>
+    <url-pattern>/CreatePpcr</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <javaee:description></javaee:description>
+    <javaee:display-name>Servlet2</javaee:display-name>
+    <servlet-name>Servlet2</servlet-name>
+    <servlet-class>com.nono.servlet.Servlet2</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Servlet2</servlet-name>
+    <url-pattern>/Servlet2</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <javaee:description></javaee:description>
+    <javaee:display-name>Verify</javaee:display-name>
+    <servlet-name>Verify</servlet-name>
+    <servlet-class>com.nono.servlet.Verify</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Verify</servlet-name>
+    <url-pattern>/Verify</url-pattern>
+  </servlet-mapping>
 </web-app>
