@@ -9,7 +9,6 @@
 </head>
 <body>
 
-<c:out value="${errorMessage }" />
 <c:if test="${!empty errorMessage}">
 	<script type="text/javascript">
 		alert("${errorMessage}");

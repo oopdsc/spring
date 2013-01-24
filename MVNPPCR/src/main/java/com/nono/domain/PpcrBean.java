@@ -15,8 +15,6 @@
  */
 package com.nono.domain;
 
-import java.util.Date;
-
 /**
  * @author nono
  *

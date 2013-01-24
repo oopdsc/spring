@@ -16,56 +16,52 @@
 package com.nono.dao.impl;
 
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
-import com.nono.dao.UserDao;
-import com.nono.domain.UserBean;
+import com.nono.dao.PpcrDao;
+import com.nono.domain.PpcrBean;
 
 /**
  * @author nono
  *
  */
-public class UserDaoImpl implements UserDao {
+public class PpcrDaoImpl implements PpcrDao {
 	
-	private Map<String, UserBean> userMap;
+	private Map<String, PpcrBean> ppcrMap;
 	
-	public UserDaoImpl(){		
-		userMap = new HashMap<String, UserBean>();		
-		
-		for(int i = 1; i <= 3; i++){
-			UserBean userBean = new UserBean();
-			userBean.setUsername("username" + i);
-			userBean.setPassword("password" + i);		
-			save(userBean);
-		}
-		
+	public PpcrDaoImpl(){
+		ppcrMap = new HashMap<String, PpcrBean>();
 	}
 
 	/* (non-Javadoc)
-	 * @see com.nono.dao.UserDao#findByUserName(java.lang.String)
+	 * @see com.nono.dao.PpcrDao#save(com.nono.domain.PpcrBean)
 	 */
 	@Override
-	public UserBean findByUserName(String username) {		
-		return userMap.get(username);
-	}
-
-	/* (non-Javadoc)
-	 * @see com.nono.dao.UserDao#save(com.nono.domain.UserBean)
-	 */
-	@Override
-	public void save(UserBean user) {
+	public void save(PpcrBean ppcr) {
 		// TODO Auto-generated method stub
-		userMap.put(user.getUsername(), user);
+		ppcrMap.put(ppcr.getTicketNum(), ppcr);
 	}
 
 	/* (non-Javadoc)
-	 * @see com.nono.dao.UserDao#update(com.nono.domain.UserBean)
+	 * @see com.nono.dao.PpcrDao#findById(java.lang.String)
 	 */
 	@Override
-	public void update(UserBean user) {
-		userMap.remove(user.getUsername());
-		save(user);
+	public PpcrBean findById(String ppcrNum) {
+		// TODO Auto-generated method stub
+		
+		return ppcrMap.get(ppcrNum);
+	}
 
+	/* (non-Javadoc)
+	 * @see com.nono.dao.PpcrDao#findAll()
+	 */
+	@Override
+	public List<PpcrBean> findAll() {
+		List<PpcrBean> list = new LinkedList<PpcrBean>();
+		list.addAll(ppcrMap.values());
+		return list;
 	}
 
 }

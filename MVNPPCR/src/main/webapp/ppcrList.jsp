@@ -10,19 +10,29 @@
 </head>
 <body>
 
-hello ${ppcr.creator}, your ppcr has been created successfully.
-Below is your ppcr infomation:
+hello ${ppcr.creator}. <br>
+
+<a href="./CreatePpcr.jsp">Create PPCR</a>
 
 <table>
+<thead>
+<td>Index</td>
+<td>Ticket Number</td>
+<td>Project Name</td>
+<td>Creator</td>
+<td>Create Date</td>
+</thead>
+<tbody>
+<c:forEach var="ppcr" items="${ppcrs}" varStatus="sta">
 <tr>
-<td>username:</td><td>${ppcr.creator }</td>
-<td>CreateDate:</td><td>${ppcr.createDate }</td>
+<td>${sta.index }</td>
+<td><a href="./ppcr.jsp?ppcrnum=${ppcr.ticketNum}"</td>
+<td>${ppcr.projectName }</td>
+<td>${ppcr.creator}</td>
+<td>${ppcr.createDate }</td>
 </tr>
-
-<tr>
-<td>projectName:</td><td>${ppcr.projectName }</td>
-<td>ticketNum:</td><td>${ppcr.ticketNum }</td>
-</tr>
+</c:forEach>
+</tbody>
 </table>
 
 </body>

@@ -8,12 +8,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.nono.dao.PpcrDao;
+import com.nono.dao.impl.PpcrDaoImpl;
 import com.nono.domain.PpcrBean;
 
 /**
  * Servlet implementation class CreatePpcr
  */
 public class CreatePpcr extends HttpServlet {
+	private PpcrDao ppcrDao = null;
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -23,6 +25,20 @@ public class CreatePpcr extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
+    
+    
+
+	/* (non-Javadoc)
+	 * @see javax.servlet.GenericServlet#init()
+	 */
+	@Override
+	public void init() throws ServletException {
+		// TODO Auto-generated method stub
+		super.init();
+		ppcrDao = new PpcrDaoImpl();
+	}
+
+
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -47,13 +63,12 @@ public class CreatePpcr extends HttpServlet {
 		ppcr.setCreator(username);
 		ppcr.setCreateDate(createDate);
 		ppcr.setProjectName(projectName);
-		ppcr.setTicketNum(ticketNum);
+		ppcr.setTicketNum(ticketNum);		
 		
-		PpcrDao ppcrDao = null;
 		ppcrDao.save(ppcr);
 		
 		//session.setAttribute("ppcr", ppcr);
-		session.setAttribute("message", "The PPCR is saved.");
+		session.setAttribute("ppcrs", ppcrDao.findAll());
 		//return to all list page
 		response.sendRedirect("ppcrList.jsp");
 	}

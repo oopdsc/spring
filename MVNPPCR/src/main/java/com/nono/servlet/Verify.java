@@ -5,6 +5,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.apache.log4j.Logger;
 
 import com.nono.dao.UserDao;
 import com.nono.dao.impl.UserDaoImpl;
@@ -14,15 +17,31 @@ import com.nono.domain.UserBean;
  * Servlet implementation class Verify
  */
 public class Verify extends HttpServlet {
+	
+	protected Logger logger = Logger.getLogger(getClass());
 	private static final long serialVersionUID = 1L;
+	
+	protected UserDao userDao;
        
-    /**
+	/**
      * @see HttpServlet#HttpServlet()
      */
     public Verify() {
         super();
         // TODO Auto-generated constructor stub
     }
+    
+    /* (non-Javadoc)
+	 * @see javax.servlet.GenericServlet#init()
+	 */
+	@Override
+	public void init() throws ServletException {
+		// TODO Auto-generated method stub
+		super.init();
+		userDao = new UserDaoImpl();
+	}
+
+
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -36,27 +55,30 @@ public class Verify extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String toUrl = "";
+		HttpSession session = request.getSession();
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		
-		UserDao userDao = new UserDaoImpl();
+		
 		UserBean userBean = userDao.findByUserName(username);
 		if(userBean == null){
-			System.out.println("null");
+			
+			logger.debug("null");
 			request.setAttribute("errorMessage", "Invalid username.");
-			toUrl = "/index.jsp";
+			toUrl = "index.jsp";
 		}else{
 			if(!userBean.isValidPwd(password)){
-				System.out.println("invalid pwd");
+				logger.debug("invalid pwd");
 				request.setAttribute("errorMessage", "Invalid password.");
-				toUrl = "/index.jsp";
+				toUrl = "index.jsp";
 			}else{
-				System.out.println("successfully");
-				toUrl = "/ppcrList.jsp";
+				logger.debug("successfully");
+				session.setAttribute("user", userBean);
+				toUrl = "ppcrList.jsp";
 			}
 		}
-		request.getRequestDispatcher(toUrl).forward(request, response);
-		//response.sendRedirect(toUrl);		
+		//request.getRequestDispatcher(toUrl).forward(request, response);
+		response.sendRedirect(toUrl);
 	}
 
 }
