@@ -1,6 +1,8 @@
 package com.nono.servlet;
 
 import java.io.IOException;
+
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -8,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.nono.dao.UserDao;
 import com.nono.dao.impl.UserDaoImpl;
@@ -38,7 +42,10 @@ public class Verify extends HttpServlet {
 	public void init() throws ServletException {
 		// TODO Auto-generated method stub
 		super.init();
-		userDao = new UserDaoImpl();
+		ServletContext application =getServletContext();
+        WebApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(application);//获取spring的context
+		
+		userDao = context.getBean("userDao", UserDao.class);
 	}
 
 

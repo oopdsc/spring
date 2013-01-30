@@ -1,11 +1,16 @@
 package com.nono.servlet;
 
 import java.io.IOException;
+
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.nono.dao.PpcrDao;
 import com.nono.dao.impl.PpcrDaoImpl;
@@ -23,7 +28,7 @@ public class CreatePpcr extends HttpServlet {
      */
     public CreatePpcr() {
         super();
-        // TODO Auto-generated constructor stub
+        
     }
     
     
@@ -35,7 +40,9 @@ public class CreatePpcr extends HttpServlet {
 	public void init() throws ServletException {
 		// TODO Auto-generated method stub
 		super.init();
-		ppcrDao = new PpcrDaoImpl();
+		ServletContext application =getServletContext();
+        WebApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(application);//获取spring的context
+		ppcrDao = context.getBean("ppcrDao", PpcrDao.class);
 	}
 
 
