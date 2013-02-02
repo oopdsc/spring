@@ -15,11 +15,13 @@
  */
 package com.nono.domain;
 
+import java.io.Serializable;
+
 /**
  * @author nono
  *
  */
-public class PpcrBean {
+public class PpcrBean implements Serializable {
 	
 	private String createDate;
 	private String creator; 

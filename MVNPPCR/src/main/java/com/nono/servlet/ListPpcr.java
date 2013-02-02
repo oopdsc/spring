@@ -7,8 +7,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
@@ -16,22 +16,23 @@ import com.nono.dao.PpcrDao;
 import com.nono.domain.PpcrBean;
 
 /**
- * Servlet implementation class CreatePpcr
+ * Servlet implementation class ListPpcr
  */
-public class CreatePpcr extends HttpServlet {
-	private PpcrDao ppcrDao = null;
+public class ListPpcr extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	protected Logger logger = Logger.getLogger(getClass());
+	
+	private PpcrDao ppcrDao;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CreatePpcr() {
+    public ListPpcr() {
         super();
-        
+        // TODO Auto-generated constructor stub
     }
     
-    
-
 	/* (non-Javadoc)
 	 * @see javax.servlet.GenericServlet#init()
 	 */
@@ -44,13 +45,19 @@ public class CreatePpcr extends HttpServlet {
 		ppcrDao = context.getBean("ppcrDao", PpcrDao.class);
 	}
 
-
-
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		String ppcrNum = request.getParameter("ppcrnum");
+		PpcrBean bean = ppcrDao.findById(ppcrNum);
+		if(logger.isDebugEnabled()){
+			System.out.println("Search ppcr for " + ppcrNum + ":" + bean);
+			logger.debug("Search ppcr for " + ppcrNum + ":" + bean);
+		}
+		
+		request.setAttribute("ppcr", bean);
+		request.getRequestDispatcher("/Ppcr.jsp?ppcrnum=" + ppcrNum).forward(request, response);
 	}
 
 	/**
@@ -58,25 +65,6 @@ public class CreatePpcr extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		HttpSession session = request.getSession();
-		PpcrBean ppcr = new PpcrBean();
-		
-		String username = (String)request.getParameter("username");
-		String createDate = (String)request.getParameter("createDate");
-		String projectName = (String)request.getParameter("projectName");
-		String ticketNum = (String)request.getParameter("ticketNum");
-		
-		ppcr.setCreator(username);
-		ppcr.setCreateDate(createDate);
-		ppcr.setProjectName(projectName);
-		ppcr.setTicketNum(ticketNum);		
-		
-		ppcrDao.save(ppcr);
-		
-		//session.setAttribute("ppcr", ppcr);
-		session.setAttribute("ppcrs", ppcrDao.findAll());
-		//return to all list page
-		response.sendRedirect("ppcrList.jsp");
 	}
 
 }

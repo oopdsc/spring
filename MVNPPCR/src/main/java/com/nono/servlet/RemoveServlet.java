@@ -7,30 +7,28 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
+import com.nono.dao.PpcrDao;
 import com.nono.dao.UserDao;
-import com.nono.dao.impl.UserDaoImpl;
-import com.nono.domain.UserBean;
 
 /**
- * Servlet implementation class Verify
+ * Servlet implementation class RemoveServlet
  */
-public class Verify extends HttpServlet {
-	
-	protected Logger logger = Logger.getLogger(getClass());
+public class RemoveServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	protected UserDao userDao;
+	protected Logger logger = Logger.getLogger(getClass());
+	
+	private PpcrDao ppcrDao;
        
-	/**
+    /**
      * @see HttpServlet#HttpServlet()
      */
-    public Verify() {
+    public RemoveServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -45,47 +43,23 @@ public class Verify extends HttpServlet {
 		ServletContext application =getServletContext();
         WebApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(application);//获取spring的context
 		
-		userDao = context.getBean("userDao", UserDao.class);
+        ppcrDao = context.getBean("ppcrDao", PpcrDao.class);
 	}
-
-
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		if(logger.isDebugEnabled()){
+			logger.debug(request.getParameter("ppcrCb"));
+		}
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String toUrl = "";
-		HttpSession session = request.getSession();
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
-		
-		
-		UserBean userBean = userDao.findByUserName(username);
-		if(userBean == null){
-			
-			logger.debug("null");
-			request.setAttribute("errorMessage", "Invalid username.");
-			toUrl = "index.jsp";
-		}else{
-			if(!userBean.isValidPwd(password)){
-				logger.debug("invalid pwd");
-				request.setAttribute("errorMessage", "Invalid password.");
-				toUrl = "index.jsp";
-			}else{
-				logger.debug("successfully");
-				session.setAttribute("user", userBean);
-				toUrl = "ppcrList.jsp";
-			}
-		}
-		request.getRequestDispatcher(toUrl).forward(request, response);
-		//response.sendRedirect(toUrl);
+		// TODO Auto-generated method stub
 	}
 
 }

@@ -6,32 +6,70 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>PPCR列表</title>
+<script type="text/javascript"
+	data-dojo-config="isDebug: false, async: true, parseOnLoad: true"
+	src="js/dojo/dojo.js"></script>
+<script type="text/javascript">
+require(["dojo", "dojo/on", "dojo/dom", "dojo/parser"],
+	function(dojo, on, dom) {
+		dojo.ready(function() {
+			on(dom.byId("create"), "click", function(){
+				window.location = "./Ppcr.jsp";
+			});
+			
+			on(dom.byId("remove"), "click", function(){
+				window.location = "./RemovePpcr";
+			});
+		});
+});
+</script>
+
 </head>
 <body>
 
-hello ${ppcr.creator}. <br>
+hello ${ppcr.creator}. <a href="Ppcr.jsp">Create PPCR</a>
 
-<a href="./CreatePpcr.jsp">Create PPCR</a>
+<button id="create" type="button">Create1</button><button id="remove" type="button">Delete1</button>
+<br>
 
 <table>
 <thead>
+<tr>
+<td></td>
 <td>Index</td>
 <td>Ticket Number</td>
 <td>Project Name</td>
 <td>Creator</td>
 <td>Create Date</td>
+</tr>
 </thead>
 <tbody>
-<c:forEach var="ppcr" items="${ppcrs}" varStatus="sta">
+
+<c:if test="${empty ppcrs }">
 <tr>
-<td>${sta.index }</td>
-<td><a href="./ppcr.jsp?ppcrnum=${ppcr.ticketNum}"</td>
+<td rowspan="4">
+	There is no PPCR.
+</td>
+</tr>
+</c:if>
+
+<c:if test="${!empty ppcrs }">
+
+
+<c:forEach var="ppcr" items="${ppcrs}" varStatus="sta">
+
+<td><input type="checkbox" name="ppcrCb" value="${ppcr.ticketNum}"> </td>
+<td>${sta.index + 1 }</td>
+<td><a href="./ListPpcr?ppcrnum=${ppcr.ticketNum}">${ppcr.ticketNum}</a></td>
 <td>${ppcr.projectName }</td>
 <td>${ppcr.creator}</td>
 <td>${ppcr.createDate }</td>
 </tr>
 </c:forEach>
+
+
+</c:if>
 </tbody>
 </table>
 

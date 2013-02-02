@@ -64,4 +64,12 @@ public class PpcrDaoImpl implements PpcrDao {
 		return list;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.nono.dao.PpcrDao#remove(com.nono.domain.PpcrBean)
+	 */
+	@Override
+	public void remove(PpcrBean ppcr) {
+		ppcrMap.remove(ppcr.getTicketNum());		
+	}
+
 }

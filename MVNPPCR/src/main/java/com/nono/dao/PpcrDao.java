@@ -30,5 +30,7 @@ public interface PpcrDao {
 	public PpcrBean findById(String ppcrNum);
 	
 	public List<PpcrBean> findAll();
+	
+	public void remove(PpcrBean ppcr);
 
 }

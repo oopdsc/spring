@@ -15,11 +15,13 @@
  */
 package com.nono.domain;
 
+import java.io.Serializable;
+
 /**
  * @author nono
  *
  */
-public class UserBean {
+public class UserBean implements Serializable{
 	
 	private String username;
 	private String password;

@@ -14,7 +14,7 @@
 		alert("${errorMessage}");
 	</script>
 </c:if>
-<form method="POST" action="<%=this.getServletContext().getContextPath() %>/Verify">
+<form method="POST" action="/MVNPPCR/Verify">
 <table>
 <tr>
 <td>username:</td><td><input type="text" name="username"></td>
