@@ -44,4 +44,5 @@
   <build>
     <finalName>aa</finalName>
   </build>
+  <groupId>nono.web</groupId>
 </project>
