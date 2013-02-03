@@ -1,0 +1,25 @@
+@CHARSET "UTF-8";
+
+html{ overflow:auto}
+
+html,body{ width:100%; height:100%}
+
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,table,th,td,img,a{margin:0;padding:0}
+
+body{font:12px/1.75 Tahoma,Arial;color:#333;background:#f3f3f3;_background-image:url(about:blank);_background-attachment:fixed}
+
+table,td{border-collapse:collapse;border-spacing:0}
+
+h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal}
+
+img{ border:0}
+
+strong{font-weight:800}
+
+ul,li{list-style:none}
+
+a{color:#006a92;text-decoration:none}
+
+a:hover{text-decoration:underline}
+
+a:focus{outline:none}
