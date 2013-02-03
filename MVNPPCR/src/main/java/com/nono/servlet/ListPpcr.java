@@ -51,8 +51,8 @@ public class ListPpcr extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String ppcrNum = request.getParameter("ppcrnum");
 		PpcrBean bean = ppcrDao.findById(ppcrNum);
+		
 		if(logger.isDebugEnabled()){
-			System.out.println("Search ppcr for " + ppcrNum + ":" + bean);
 			logger.debug("Search ppcr for " + ppcrNum + ":" + bean);
 		}
 		

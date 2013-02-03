@@ -14,6 +14,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.nono.dao.PpcrDao;
 import com.nono.dao.UserDao;
+import com.nono.domain.PpcrBean;
 
 /**
  * Servlet implementation class RemoveServlet
@@ -50,9 +51,21 @@ public class RemoveServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String ppcrNums = request.getParameter("ppcrnums");
+		
 		if(logger.isDebugEnabled()){
-			logger.debug(request.getParameter("ppcrCb"));
+			logger.debug("checkbox value:" + ppcrNums);
 		}
+		
+		for(String num : ppcrNums.split(",")){
+			PpcrBean bean = ppcrDao.findById(num);
+			if(bean != null){
+				ppcrDao.remove(bean);
+			}
+		}
+		request.setAttribute("ppcrs", ppcrDao.findAll());
+		request.getRequestDispatcher("ppcrList.jsp").forward(request, response);
+		//response.sendRedirect("ppcrList.jsp");
 	}
 
 	/**

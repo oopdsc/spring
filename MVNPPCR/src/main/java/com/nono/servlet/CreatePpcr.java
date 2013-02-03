@@ -74,9 +74,11 @@ public class CreatePpcr extends HttpServlet {
 		ppcrDao.save(ppcr);
 		
 		//session.setAttribute("ppcr", ppcr);
-		session.setAttribute("ppcrs", ppcrDao.findAll());
+		request.setAttribute("ppcrs", ppcrDao.findAll());
+		
 		//return to all list page
-		response.sendRedirect("ppcrList.jsp");
+		request.getRequestDispatcher("ppcrList.jsp").forward(request, response);		
+		//response.sendRedirect("ppcrList.jsp");
 	}
 
 }

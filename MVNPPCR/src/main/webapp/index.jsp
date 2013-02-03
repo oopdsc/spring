@@ -6,38 +6,37 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" href="css/basic.css" type="text/css">
-    <style type="text/css">
-      .login_button input {
-        outline: none;
-        background: #8dba36 url(image/lg_btn120730b.png) no-repeat
-      }
+
     </style>
-    <title>Insert title here</title>
+    <title>Sign in · PPCR</title>
   </head>
-  <body>
-    <c:if test="${!empty errorMessage}">
-      <script type="text/javascript">
-  		alert("${errorMessage}");
-       </script>
-    </c:if>
-    <form method="POST" action="/MVNPPCR/Verify">
-      <ul id="g_list" class="lg_list clear">
-        <li id="g_u" class="item">
-          <div class="input_w">
-            <label id="username_tips" for="username">Username</label><br />
-            <input type="text" name="username" id="username" tabindex=1>
+  <body class="logged_out windows env-production ">
+    <div id="wrapper"> 
+      <c:if test="${!empty errorMessage}">
+        <script type="text/javascript">
+    		alert("${errorMessage}");
+         </script>
+      </c:if>
+      <div class="site clearfix">
+        <div id="site-container" class="context-loader-container">
+          <div class="auth-form" id="login">
+            <form method="POST" action="/MVNPPCR/Verify">
+              <div class="auth-form-header">
+                <h1>Sign in</h1>
+              </div>
+              <div class="auth-form-body">
+                <label for="username">Username</label> 
+                <input type="text" class="input-block" name="username" id="username" tabindex="1" /> 
+                <label for="password">Password<a href="#"> (forgot password)</a></label> 
+                <input type="password" class="input-block" name="password" id="password" tabindex="2" /> 
+                  
+                <input class="button" name="commit" tabindex="3" type="submit" value="Sign in" />
+              </div>
+    
+            </form>
           </div>
-        </li>
-        <li id="g_p" class="item">
-          <div class="input_w">
-            <label id="label_pwd" for="password">password</label><br /> <input
-              type="password" name="password" id="password" tabindex=2>
-          </div>
-        </li>
-        <br />
-        <div class="login_button">
-          <input type="submit" tabindex=5 value="登 录" id="login_btn" />
+         </div>
         </div>
-    </form>
+     </div>
   </body>
 </html>

@@ -48,9 +48,11 @@ public class Servlet2 extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println(jdbcTemplate.queryForInt("select count(*) from CUSTOMER"));
-		System.out.println(logger.isDebugEnabled());
-		logger.debug("xxxxxxxxxxxxxxxxxxxxxxxx");
+		
+		request.getRequestDispatcher("index.jsp").forward(request, response);
+		//request.getRequestDispatcher("/index.jsp").forward(request, response);
+		//response.sendRedirect("index.jsp");
+		//response.sendRedirect("/index.jsp");
 
 	}
 
