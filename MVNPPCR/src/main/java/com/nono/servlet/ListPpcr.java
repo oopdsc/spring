@@ -57,7 +57,7 @@ public class ListPpcr extends HttpServlet {
 		}
 		
 		request.setAttribute("ppcr", bean);
-		request.getRequestDispatcher("/Ppcr.jsp?ppcrnum=" + ppcrNum).forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/page/Ppcr.jsp?ppcrnum=" + ppcrNum).forward(request, response);
 	}
 
 	/**

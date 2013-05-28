@@ -5,10 +5,17 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Insert title here</title>
+    <script type="text/javascript">
+    	function submit1(){
+    		document.getElementById("value1").value = "test jsp";
+    		document.getElementById("hiddenSubmit").click();
+    	}
+    </script>
   </head>
   <body>
 
     <form method="POST" action="/MVNPPCR/CreatePpcr">
+    <input type="hidden" value="" id="value1" name="value1">
       <table>
         <tr>
           <td>username:</td>
@@ -26,7 +33,8 @@
       </table>
   
       <br>
-      <button type="submit">Submit</button>
+      <button type="submit" style="visible:false" id="hiddenSubmit">Hidden Submit</button>
+      <button type="button" onclick="submit1()">Submit</button>
       <button type="button" onclick="history.go(-1);">Return</button>
     </form>
   </body>

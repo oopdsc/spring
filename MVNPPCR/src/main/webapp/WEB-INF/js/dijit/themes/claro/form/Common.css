@@ -6,7 +6,7 @@
 }
 .claro .dijitValidationTextBoxError .dijitValidationContainer {
   background-color: #d46464;
-  background-image: url("../form/images/error.png");
+  background-image: url("images/error.png");
   background-position: top center;
   border: solid #d46464 0;
   width: 9px;
@@ -128,7 +128,7 @@
 /*========================= for special widgets =========================*/
 /* Input boxes with an arrow (for a drop down) */
 .claro .dijitSelect .dijitArrowButtonInner, .claro .dijitComboBox .dijitArrowButtonInner {
-  background-image: url("../form/images/commonFormArrows.png");
+  background-image: url("images/commonFormArrows.png");
   background-position: -35px 53%;
   background-repeat: no-repeat;
   margin: 0;

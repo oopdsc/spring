@@ -400,6 +400,15 @@
 		<enabled>true</enabled>
 		<async-supported>false</async-supported>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>AjaxServlet</display-name>
+		<servlet-name>AjaxServlet</servlet-name>
+		<servlet-class>com.nono.servlet.AjaxServlet</servlet-class>
+		<enabled>true</enabled>
+		<async-supported>false</async-supported>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>Verify</servlet-name>
 		<url-pattern>/Verify</url-pattern>
@@ -412,15 +421,20 @@
 		<servlet-name>RemoveServlet</servlet-name>
 		<url-pattern>/RemovePpcr</url-pattern>
 	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AjaxServlet</servlet-name>
+		<url-pattern>
+		/AjaxServlet</url-pattern>
+	</servlet-mapping>
 
 
 
 	<error-page>
 		<error-code>404</error-code>
-		<location>/ErrorPage/404.html</location>
+		<location>/WEB-INF/ErrorPage/404.html</location>
 	</error-page>
 	<error-page>
 		<error-code>500</error-code>
-		<location>/ErrorPage/500.html</location>
+		<location>/WEB-INF/ErrorPage/500.html</location>
 	</error-page>
 </web-app>

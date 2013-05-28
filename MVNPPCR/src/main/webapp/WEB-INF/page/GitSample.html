@@ -1,11 +1,13 @@
-<!DOCTYPE html>
+<!-- --><!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="css/basic.css" type="text/css">
+<link rel="stylesheet" href="../css/basic.css" type="text/css">
+<link rel="stylesheet" href="../css/advance.css" type="text/css">
 <title>GIT CSS Sample Page</title>
 </head>
-<body>
+  <body class="logged_in  windows  env-production  "> 
+    <div id="wrapper"> 
   <div class="select-menu js-menu-container js-select-menu">
 
     <span class="minibutton select-menu-button js-menu-target"> <span
@@ -65,5 +67,69 @@
     <!-- /.select-menu-modal-holder -->
   </div>
   <!-- /.select-menu -->
+  
+  <dl class="form required">
+      <dt><label>Example Text</label></dt>
+      <dd><input type="text" class="textfield" value="Example Value"></dd>
+    </dl>
+
+    <dl class="form required">
+      <dt><label>Example Label</label></dt>
+      <dd>
+        <select>
+          <option>Choose an option</option>
+          <option>Git</option>
+          <option>Subversion</option>
+          <option>Social Coding</option>
+          <option>Beets</option>
+          <option>Bears</option>
+          <option>Battlestar Galactica</option>
+        </select>
+      </dd>
+    </dl>
+
+
+  <h3>
+    6.2 <em><a
+      href="https://github.com/github/github/blob/master/public/stylesheets/github/boxed-groups.scss">boxed-groups.scss</a></em>
+  </h3>
+  <div class="styleguide-element">
+
+    <div class="flash-messages">
+      <div class="flash flash-notice">
+        Flash Message <span
+          class="mini-icon mini-icon-remove-close close"></span>
+      </div>
+      <div class="flash flash-warn">
+        Flash Warning <span
+          class="mini-icon mini-icon-remove-close close"></span>
+      </div>
+      <div class="flash flash-error">
+        Flash Error <span class="mini-icon mini-icon-remove-close close"></span>
+      </div>
+    </div>
+
+  </div>
+  
+  
+   <div class="boxed-group">
+    <a href="#" class="minibutton bigger lighter boxed-group-action"><span>Create a new item</span></a>
+    <h3>Lists</h3>
+    <div class="boxed-group-inner">
+      <p>Boxed groups can have lists of things inside of them.</p>
+      <ul class="boxed-group-list">
+        <li class="linked-item">
+          <a href="#">This is a list of stuff <em class="description">(description)</em></a>
+        </li>
+        <li class="linked-item">
+          <a href="#">They link places</a>
+        </li>
+        <li class="linked-item">
+          <a href="#">Which can be useful sometimes</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
 </body>
 </html>

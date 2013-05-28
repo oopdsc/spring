@@ -64,7 +64,7 @@ public class RemoveServlet extends HttpServlet {
 			}
 		}
 		request.setAttribute("ppcrs", ppcrDao.findAll());
-		request.getRequestDispatcher("ppcrList.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/page/ppcrList.jsp").forward(request, response);
 		//response.sendRedirect("ppcrList.jsp");
 	}
 

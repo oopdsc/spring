@@ -49,7 +49,7 @@ public class Servlet2 extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.getRequestDispatcher("index.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/page/index.jsp").forward(request, response);
 		//request.getRequestDispatcher("/index.jsp").forward(request, response);
 		//response.sendRedirect("index.jsp");
 		//response.sendRedirect("/index.jsp");

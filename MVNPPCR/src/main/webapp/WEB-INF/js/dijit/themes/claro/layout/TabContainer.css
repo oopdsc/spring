@@ -60,7 +60,7 @@
   border-color: #b5bcc7;
 }
 .claro .dijitTabCloseButton {
-  background: url("../layout/images/tabClose.png") no-repeat;
+  background: url("images/tabClose.png") no-repeat;
   width: 14px;
   height: 14px;
   margin-left: 5px;

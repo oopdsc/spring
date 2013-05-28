@@ -19,6 +19,9 @@ import com.nono.domain.PpcrBean;
  * Servlet implementation class CreatePpcr
  */
 public class CreatePpcr extends HttpServlet {
+	
+
+	
 	private PpcrDao ppcrDao = null;
 	private static final long serialVersionUID = 1L;
        
@@ -59,6 +62,9 @@ public class CreatePpcr extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
+		
+
+		
 		PpcrBean ppcr = new PpcrBean();
 		
 		String username = (String)request.getParameter("username");
@@ -77,8 +83,13 @@ public class CreatePpcr extends HttpServlet {
 		request.setAttribute("ppcrs", ppcrDao.findAll());
 		
 		//return to all list page
-		request.getRequestDispatcher("ppcrList.jsp").forward(request, response);		
+		request.getRequestDispatcher("/WEB-INF/page/ppcrList.jsp").forward(request, response);		
 		//response.sendRedirect("ppcrList.jsp");
 	}
+
+
+
+	
+	
 
 }

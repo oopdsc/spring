@@ -176,7 +176,7 @@
   border: 0;
   width: 18px;
   height: 16px;
-  background-image: url("../form/images/sliderThumbs.png");
+  background-image: url("images/sliderThumbs.png");
   background-repeat: no-repeat;
   background-position: 0 0;
 }
@@ -199,7 +199,7 @@
   border: 0;
   width: 18px;
   height: 16px;
-  background-image: url("../form/images/sliderThumbs.png");
+  background-image: url("images/sliderThumbs.png");
   background-repeat: no-repeat;
   background-position: -289px 0;
 }
@@ -229,7 +229,7 @@
 .claro .dijitSliderIncrementIconH,
 .claro .dijitSliderDecrementIconV,
 .claro .dijitSliderIncrementIconV {
-  background-image: url("../form/images/commonFormArrows.png");
+  background-image: url("images/commonFormArrows.png");
   background-repeat: no-repeat;
   background-color: #efefef;
   -moz-border-radius: 2px;
