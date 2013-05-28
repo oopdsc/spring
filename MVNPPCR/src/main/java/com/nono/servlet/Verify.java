@@ -71,7 +71,7 @@ public class Verify extends HttpServlet {
 		String toUrl = "";
 		HttpSession session = request.getSession();
 		
-		System.out.println("This is value1:" + value1);
+		System.out.println("This is value111:" + value1);
 		
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
