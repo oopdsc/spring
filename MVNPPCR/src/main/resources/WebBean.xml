@@ -9,9 +9,12 @@
 
 	<bean id="userDao" class="com.nono.dao.impl.UserDaoImpl"></bean>
 	<bean id="ppcrDao" class="com.nono.dao.impl.PpcrDaoImpl"></bean>
+	
+	<!-- 
 	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean"
 		p:jndiName="jdbc/__default" />
 	<bean id="jdbcTemplate" 
 		class="org.springframework.jdbc.core.JdbcTemplate" p:dataSource-ref="dataSource">
 	</bean>
+	 -->
 </beans>

@@ -41,7 +41,7 @@ public class PpcrDaoImpl implements PpcrDao {
 	@Override
 	public void save(PpcrBean ppcr) {
 		// TODO Auto-generated method stub
-		ppcrMap.put(ppcr.getTicketNum(), ppcr);
+		ppcrMap.put(ppcr.getTicketNo(), ppcr);
 	}
 
 	/* (non-Javadoc)
@@ -69,7 +69,7 @@ public class PpcrDaoImpl implements PpcrDao {
 	 */
 	@Override
 	public void remove(PpcrBean ppcr) {
-		ppcrMap.remove(ppcr.getTicketNum());		
+		ppcrMap.remove(ppcr.getTicketNo());		
 	}
 
 }

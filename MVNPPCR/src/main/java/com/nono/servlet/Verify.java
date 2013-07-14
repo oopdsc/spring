@@ -21,8 +21,6 @@ import com.nono.domain.UserBean;
  * Servlet implementation class Verify
  */
 public class Verify extends HttpServlet {
-	
-	private String value1;
 
 	protected Logger logger = Logger.getLogger(getClass());
 	private static final long serialVersionUID = 1L;
@@ -59,7 +57,7 @@ public class Verify extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/page/index.jsp").forward(request, response);
+		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 
 	/**
@@ -71,8 +69,6 @@ public class Verify extends HttpServlet {
 		String toUrl = "";
 		HttpSession session = request.getSession();
 		
-		System.out.println("This is value111:" + value1);
-		
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 
@@ -82,36 +78,20 @@ public class Verify extends HttpServlet {
 		} else {
 
 			UserBean userBean = userDao.findByUserName(username);
+			
 			if (userBean == null || !userBean.isValidPwd(password)) {
 
-				logger.debug("invalid username or password");
+				logger.info("invalid username or password");
 				request.setAttribute("error", true);
-				toUrl = "/WEB-INF/page/index.jsp";
+				toUrl = "index.jsp";
 			} else {
-				logger.debug("successfully");
+				logger.info("user " + username + " login successfully");
 				session.setAttribute("user", userBean);
-				toUrl = "/WEB-INF/page/ppcrList.jsp";
+				toUrl = "page/ppcrList.jsp";
 			}
 		}
 		request.getRequestDispatcher(toUrl).forward(request, response);
 		// response.sendRedirect(toUrl);
 	}
 	
-
-	/**
-	 * @return the value1
-	 */
-	public String getValue1() {
-		return value1;
-	}
-
-
-
-	/**
-	 * @param value1 the value1 to set
-	 */
-	public void setValue1(String value1) {
-		this.value1 = value1;
-	}
-
 }

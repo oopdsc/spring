@@ -5,9 +5,9 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <link rel="stylesheet" href="../css/basic.css" type="text/css">
-    <link rel="stylesheet" href="../css/advance.css" type="text/css">
-    <script type="text/javascript" src="../js/dojo/dojo.js"
+    <link rel="stylesheet" href="css/basic.css" type="text/css">
+    <link rel="stylesheet" href="css/advance.css" type="text/css">
+    <script type="text/javascript" src="js/dojo/dojo.js"
       data-dojo-config="isDebug: false, async: true, parseOnLoad: true"></script>
     <title>Sign in · PPCR</title>
   </head>
@@ -23,7 +23,7 @@
             </div>
           </c:if>
           <div class="auth-form" id="login">
-            <form method="POST" action="/MVNPPCR/Verify">
+            <form method="POST" action="./Verify">
               <div class="auth-form-header">
                 <h1>Sign in</h1>
               </div>

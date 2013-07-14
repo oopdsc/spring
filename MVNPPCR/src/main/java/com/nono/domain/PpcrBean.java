@@ -16,6 +16,7 @@
 package com.nono.domain;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * @author nono
@@ -23,36 +24,111 @@ import java.io.Serializable;
  */
 public class PpcrBean implements Serializable {
 	
-	private String createDate;
-	private String creator; 
-	private String projectName;
-	private String ticketNum;
+	private static final long serialVersionUID = 1L;
 	
-	public String getCreateDate() {
-		return createDate;
+	private String ppcrNo;
+	private String creator;
+	private Date createDate;
+	private String site;
+	private String project;
+	private String reason;
+	private String ticketNo;
+	private String remark;
+	/**
+	 * @return the ppcrNo
+	 */
+	public String getPpcrNo() {
+		return ppcrNo;
 	}
-	public void setCreateDate(String createDate) {
-		this.createDate = createDate;
+	/**
+	 * @param ppcrNo the ppcrNo to set
+	 */
+	public void setPpcrNo(String ppcrNo) {
+		this.ppcrNo = ppcrNo;
 	}
+	/**
+	 * @return the creator
+	 */
 	public String getCreator() {
 		return creator;
 	}
+	/**
+	 * @param creator the creator to set
+	 */
 	public void setCreator(String creator) {
 		this.creator = creator;
 	}
-	public String getProjectName() {
-		return projectName;
+	/**
+	 * @return the createDate
+	 */
+	public Date getCreateDate() {
+		return createDate;
 	}
-	public void setProjectName(String projectName) {
-		this.projectName = projectName;
+	/**
+	 * @param createDate the createDate to set
+	 */
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
 	}
-	public String getTicketNum() {
-		return ticketNum;
+	/**
+	 * @return the site
+	 */
+	public String getSite() {
+		return site;
 	}
-	public void setTicketNum(String ticketNum) {
-		this.ticketNum = ticketNum;
+	/**
+	 * @param site the site to set
+	 */
+	public void setSite(String site) {
+		this.site = site;
+	}
+	/**
+	 * @return the project
+	 */
+	public String getProject() {
+		return project;
+	}
+	/**
+	 * @param project the project to set
+	 */
+	public void setProject(String project) {
+		this.project = project;
+	}
+	/**
+	 * @return the reason
+	 */
+	public String getReason() {
+		return reason;
+	}
+	/**
+	 * @param reason the reason to set
+	 */
+	public void setReason(String reason) {
+		this.reason = reason;
+	}
+	/**
+	 * @return the ticketNo
+	 */
+	public String getTicketNo() {
+		return ticketNo;
+	}
+	/**
+	 * @param ticketNo the ticketNo to set
+	 */
+	public void setTicketNo(String ticketNo) {
+		this.ticketNo = ticketNo;
+	}
+	/**
+	 * @return the remark
+	 */
+	public String getRemark() {
+		return remark;
+	}
+	/**
+	 * @param remark the remark to set
+	 */
+	public void setRemark(String remark) {
+		this.remark = remark;
 	}
 	
-	
-
 }

@@ -6,21 +6,22 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="../css/basic.css" type="text/css">
-<link rel="stylesheet" href="../css/advance.css" type="text/css">
+<link rel="stylesheet" href="css/basic.css" type="text/css">
+<link rel="stylesheet" href="css/advance.css" type="text/css">
 
 <title>${user.username} · PPCR</title>
 
 <script type="text/javascript"
   data-dojo-config="isDebug: false, async: true, parseOnLoad: true"
-  src="../js/dojo/dojo.js"></script>
+  src="js/dojo/dojo.js"></script>
   
 <script type="text/javascript">
   require([ "dojo", "dojo/on", "dojo/query", "dojo/dom", "dojo/parser" ], function(dojo, on, query,
   		dom) {
       dojo.ready(function() {
         on(dom.byId("create"), "click", function() {
-          window.location = "Ppcr.jsp";
+          dojo.attr(dom.byId("mainForm"), "action", "CreatePpcr");
+          dom.byId("hiddenSubmit").click();
         });
       
         on(dom.byId("remove"), "click", function() {
@@ -42,7 +43,9 @@
 </script>
 
 </head>
-<body class="logged_out windows env-production ">
+<body class="logged_out windows env-production">
+<form id="mainForm" action="" method="post">
+	<button id="hiddenSubmit" type="submit" style="visible:false">HiddenSubmit</button>
   <p>
     <div class="button-group">  
       <button id="create" type="button" class="minibutton primary">Create</button>
@@ -78,11 +81,9 @@
             <td><time class="js-relative-date" datetime="2013-01-12T21:44:36-08:00" title="2013-01-12 21:44:36">January 12, 2013</time>${ppcr.createDate }</td>
            </tr>
         </c:forEach>
-
-
       </c:if>
     </tbody>
   </table>
-
+</form>
 </body>
 </html>
