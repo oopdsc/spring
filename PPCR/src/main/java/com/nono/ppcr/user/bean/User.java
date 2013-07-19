@@ -22,5 +22,6 @@ package com.nono.ppcr.user.bean;
 public class User {
 	
 	//version 2.2
+	//version 2.3
 
 }
