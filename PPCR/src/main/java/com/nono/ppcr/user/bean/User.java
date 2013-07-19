@@ -16,7 +16,7 @@
 package com.nono.ppcr.user.bean;
 
 /**
- * @author nono  version2
+ * @author nono  version2.1
  *
  */
 public class User {
