@@ -9,9 +9,11 @@
 <body>
 
 	<form action="user/login.do" method="post">
-		<input type="text" name="username">
-		<input type="password" name="password" >
+		<label>Username:</label><input type="text" name="username"> <br>
 		
-	</form>
-</body>
+		<label>Password:</label><input type="password" name="password" ><br>
+		
+	 <button type="submit">Submit</button>  <a href="/user/register.do"></a>
+		
+	</form></body>
 </html>

@@ -13,29 +13,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.nono.ppcr.user.bean;
+package com.nono.ppcr.user.service;
 
-import static org.junit.Assert.*;
+import java.util.List;
 
-import org.junit.Test;
-import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
+import com.nono.ppcr.user.dao.model.User;
 
 /**
  * @author nono
  *
  */
-public class UserTest {
-
-	@Test
-	public void test() {
-		//fail("Not yet implemented");
-		
-		Md5PasswordEncoder e = new Md5PasswordEncoder();
-		String pwd = "psufhvk";
-		String md5Pwd = e.encodePassword(pwd, null);
-		System.out.println(md5Pwd);
-	}
+public interface UserService {
 	
+	public int insert(User user);
 	
+	public int update(User user);
+	
+	public int delete(User user);
+	
+	public List<User> findAll();
+	
+	public boolean findByName(String username);
+	
+	public boolean selectByAuth(User user);
 
 }

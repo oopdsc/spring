@@ -15,8 +15,14 @@
  */
 package com.nono.ppcr.user.Controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.nono.ppcr.user.dao.model.User;
+import com.nono.ppcr.user.dao.model.UserExample.Criteria;
+import com.nono.ppcr.user.service.UserService;
 
 /**
  * @author nono
@@ -27,9 +33,35 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/user")
 public class UserController {
 	
+	@Autowired
+	UserService userService;
+	
 	@RequestMapping("/main")
-	public String login(){
+	public String main(){
 		return "user/main";
+	}
+	
+	@RequestMapping("/login")
+	public String login(User user, BindingResult bindingResult){
+		if(userService.selectByAuth(user)){
+			return "ppcr/ppcrList";
+		}else{
+			bindingResult.rejectValue("username", "username or password is wrong");
+			return "user/main";
+		}		
+	}
+	
+	@RequestMapping("/create")
+	public String create(User user, BindingResult bindingResult){
+		if(userService.findByName(user.getUsername())){
+			bindingResult.rejectValue("username", "Username is already exist, please change one.");
+			return "user/register";
+		}else{
+			userService.insert(user);
+			return "user/main";
+		}
+		
+		
 	}
 
 }

@@ -13,29 +13,33 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.nono.ppcr.user.bean;
+package com.nono.ppcr;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
-import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
  * @author nono
  *
  */
-public class UserTest {
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations={"/applicationContext.xml"})
+public class JdbcTest{
 
+	@Autowired
+	private JdbcTemplate jdbcTemplate;
+	
 	@Test
 	public void test() {
-		//fail("Not yet implemented");
-		
-		Md5PasswordEncoder e = new Md5PasswordEncoder();
-		String pwd = "psufhvk";
-		String md5Pwd = e.encodePassword(pwd, null);
-		System.out.println(md5Pwd);
+		String sql = "select count(*) from user;";
+		int count = jdbcTemplate.queryForInt(sql);
+		assertEquals(count, 0);
 	}
-	
-	
 
 }
